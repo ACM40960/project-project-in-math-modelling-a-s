@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/global-warming-4.png" alt="Global Warming Plot" width="600"/>
+</p>
+
 # Human-Caused Global Warming — A Data-Driven Case
 
 > Reproducible analysis linking rising **CO₂** to **global temperature anomalies**, while testing and ruling out **solar irradiance** and **volcanic aerosols** as the main drivers.
@@ -37,3 +41,4 @@ The full write-up lives in **`reports/final_project.pdf`**.
 ├── requirements.txt
 └── README.md
 ```
+
