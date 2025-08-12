@@ -172,3 +172,26 @@ Key finding: Data points cluster tightly around the 1:1 line, further validating
 * SI composites and AOD reconstructions have uncertainties; results are robust to these but not immune.
 
 * We do not perform formal attribution with full climate models; this is a transparent statistical test, not a full detection-and-attribution study.
+## Future Work
+* Add ENSO/PDO/AMO indices as additional covariates.
+
+* Try Bayesian fits and time-varying coefficients.
+
+* Use forcings (W/m²) instead of raw indices and fit a physical energy-balance model.
+
+* Extend AOD to the latest reconstructions and test the post-2012 period with volcanic forcing proxies.
+## Contributing
+Contributions are welcome!
+
+* Fork the repository.
+
+* Create a new branch.
+
+* Commit your changes.
+
+* Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
