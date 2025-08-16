@@ -15,7 +15,7 @@
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
 
-A reproducible, evidence-based analysis showing the link between rising **CO₂ levels** and **global temperature anomalies**, while testing and ruling out solar irradiance and volcanic aerosols as the main drivers.
+A reproducible, data-driven analysis demonstrating the dominant role of rising CO₂ in global temperature anomalies, while evaluating and contrasting the contributions of solar irradiance and volcanic activity.
 
 ---
 
