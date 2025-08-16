@@ -84,13 +84,15 @@ Unlike many climate attribution studies relying on complex global climate models
 ## Project Structure
 
 ```
-climate_analysis/
+main/
 ├── data/ # Input datasets (raw & processed)
 ├── images/ # All exported plots for README & report
-├── notebooks/
-│ └── final_project2.ipynb # Main analysis notebook
-├── reports/
+├── notebook/
+│ └── final_project.ipynb # Main analysis notebook
+├── report/
 │ └── final_project.pdf # Detailed report
+├── poster/
+│ └── final_poster.pdf
 ├── requirements.txt
 └── README.md
 ```
