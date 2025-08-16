@@ -69,14 +69,15 @@ Unlike many climate attribution studies relying on complex global climate models
 - **Visualization** — Produced comparative plots and diagnostic charts for transparency and reproducibility.
 
 > The following sections detail the methodology, results, and statistical evidence supporting these conclusions.
+> 
+### Workflow Overview
+![Project Workflow](images/project_workflow.png)
 
 ### Project Goals
 - Quantify the effect of CO₂ on global temperature anomalies.
 - Evaluate whether natural forcings explain recent warming trends.
 - Provide reproducible, open-source analysis for scientific communication.
-### Workflow Overview
 
-![Project Workflow](images/project_workflow.png)
 
 ---
 
