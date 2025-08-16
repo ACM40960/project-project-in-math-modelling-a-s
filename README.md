@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <h1>Human-Caused Global Warming — A Data-Driven Case</h1>
+  <h1>Data driven analysis of Global Warming Causes</h1>
 </div>
 
 ![Python](https://img.shields.io/badge/Python-v3.10%2B-blue)
@@ -38,32 +38,33 @@ A reproducible, evidence-based analysis showing the link between rising **CO₂ 
 
 ## Abstract
 
-This project investigates the relationship between **global temperature anomalies** and key climate drivers:
+This project presents a reproducible, data-driven analysis quantifying the relationship between atmospheric CO₂ concentrations and global temperature anomalies, and evaluating the additional contributions of natural drivers such as solar irradiance and volcanic activity. Using merged land (Berkeley Earth) and ocean (HadSST4) temperature datasets, we construct a global anomaly series and assess driver influence through correlation analysis, linear regression, and ANOVA model comparison. The analysis quantifies each driver’s effect, formally tests whether natural factors significantly improve model performance, and provides statistical evidence that CO₂ is the dominant contributor to modern global warming, with solar and volcanic influences limited to short-term variability.
 
-- **Anthropogenic:** Atmospheric CO₂ concentration (Mauna Loa)  
-- **Natural:** Total Solar Irradiance (TSI), Volcanic Aerosol Optical Depth (AOD), and Volcanic Explosivity Index (VEI)
-
-Using merged land (Berkeley Earth) and ocean (HadSST4) temperature datasets, we construct a **global anomaly series** and assess driver influence using correlation analysis, OLS regression, and ANOVA model comparison.  
-
-The results strongly support that **CO₂ is the dominant driver** of modern global warming, with natural forcings contributing only minor short-term fluctuations.
-
----
+## Why this Project Matters
+Climate change is one of the most pressing global challenges, yet public debate often questions the extent to which human activities are responsible. By rigorously comparing anthropogenic (CO₂) and natural (solar, volcanic) climate drivers using transparent, reproducible methods, this project provides clear statistical evidence to inform science communication, policy decisions, and climate education. The results not only quantify the role of CO₂ but also clarify the limited influence of natural variability, reinforcing the urgency of reducing greenhouse gas emissions.
 
 ## Project Description
 
-Human activities, particularly fossil fuel combustion, have increased atmospheric CO₂ concentrations to levels unprecedented in at least 800,000 years. This study provides a **statistical demonstration** of the anthropogenic signal in recent warming.
+Human activities, particularly fossil fuel combustion, have increased atmospheric CO₂ concentrations to levels unprecedented in at least 800,000 years. This study provides a **statistical demonstration** of the anthropogenic signal in recent warming, using transparent, reproducible methods and publicly available datasets.
+
+Unlike many climate attribution studies relying on complex global climate models, this project applies open-source statistical tools and clear workflows that can be reproduced by researchers, educators, and the public.
 
 ### Key Components
-- **Temperature Anomaly Construction** — Merge land & ocean datasets with area weighting (29% land, 71% ocean).  
-- **CO₂–Temperature Analysis** — Quantify strength of the relationship since 1959.  
-- **Natural Driver Evaluation** — Examine solar and volcanic influences.  
-- **Statistical Modeling** — OLS regression, HAC-robust errors, ANOVA.  
-- **Visualization** — Comparative plots and diagnostic charts.
+- **Temperature Anomaly Construction** — Merged land (Berkeley Earth) and ocean (HadSST4) datasets with area weighting (29% land, 71% ocean) to build a consistent global anomaly series.  
+- **CO₂–Temperature Analysis** — Found R² ≈ 0.92 since 1959, showing a strong correlation between CO₂ and global temperatures.  
+- **Natural Driver Evaluation** — Confirmed that solar irradiance and volcanic activity contribute only short-term fluctuations without driving long-term warming trends.  
+- **Statistical Modeling** — Applied OLS regression with HAC-robust errors and ANOVA to evaluate model fit and compare nested models.  
+- **Visualization** — Produced comparative plots and diagnostic charts for transparency and reproducibility.
+
+> The following sections detail the methodology, results, and statistical evidence supporting these conclusions.
 
 ### Project Goals
 - Quantify the effect of CO₂ on global temperature anomalies.
 - Evaluate whether natural forcings explain recent warming trends.
 - Provide reproducible, open-source analysis for scientific communication.
+### Workflow Overview
+
+![Project Workflow](images/project_workflow.png)
 
 ---
 
