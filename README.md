@@ -10,6 +10,7 @@
 ![Pandas](https://img.shields.io/badge/Pandas-Latest-blue)
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-Latest-blue)
 ![Seaborn](https://img.shields.io/badge/Seaborn-Latest-green)
+![SciPy](https://img.shields.io/badge/SciPy-Latest-blue)
 ![Statsmodels](https://img.shields.io/badge/Statsmodels-Latest-green)
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
@@ -20,19 +21,30 @@ A reproducible, evidence-based analysis showing the link between rising **CO₂ 
 
 ## Table of Contents
 1. [Abstract](#abstract)  
-2. [Project Description](#project-description)  
+2. [Why This Project Matters](#why-this-project-matters)  
+3. [Project Description](#project-description)  
    - [Key Components](#key-components)  
+   - [Workflow Overview](#workflow-overview)  
    - [Project Goals](#project-goals)  
-3. [Datasets](#datasets)  
-4. [Project Structure](#project-structure)  
-5. [Installation](#installation)  
-6. [Methodology](#methodology)  
-7. [Results](#results)  
-   - [Key Findings](#key-findings)  
-8. [Future Work](#future-work)  
-9. [Contributing](#contributing)  
-10. [License](#license)  
-11. [Contact](#contact)  
+4. [Installation](#installation)  
+5. [Datasets](#datasets)  
+6. [Project Structure](#project-structure)  
+7. [Methodology](#methodology)  
+8. [Results](#results)  
+   - [Global Warming Trend](#global-warming-trend-land-ocean-and-global)  
+   - [CO₂ vs Global Temperature](#co₂-vs-global-temperature)  
+   - [Role of Solar Irradiance](#role-of-solar-irradiance)  
+   - [Role of Volcanic Activity](#role-of-volcanic-activity)  
+   - [Model Accuracy](#model-accuracy--observed-vs-predicted)  
+   - [Predicted vs Observed Scatter](#predicted-vs-observed-scatter)  
+   - [Regression Analysis](#regression-analysis-coefficients--significance)  
+   - [ANOVA Model Comparison](#anova-model-comparison)  
+9. [Robustness & Diagnostics](#robustness--diagnostics)  
+10. [Limitations](#limitations)  
+11. [Future Work](#future-work)  
+12. [Contributing](#contributing)  
+13. [License](#license)  
+14. [Contact](#contact)  
 
 ---
 
@@ -137,9 +149,9 @@ This will regenerate all figures present in the images/ folder and results into 
 ### Export the notebook as PDF (optional)
 If you want to produce a PDF version of the notebook with all outputs:
 ```bash
-pip install "nbconvert[webpdf]" playwright
-playwright install chromium
-jupyter nbconvert --to webpdf notebooks/final_project2.ipynb
+!pip install "nbconvert[webpdf]" playwright
+!playwright install chromium
+!jupyter nbconvert --to webpdf notebooks/final_project.ipynb
 ```
 ## Datasets
 
@@ -166,23 +178,30 @@ jupyter nbconvert --to webpdf notebooks/final_project2.ipynb
 * Diagnostics: Residual plots, QQ plots, Cook’s distance, VIF.
 ## Results:
 1. Global Warming Trend — Land, Ocean, and Global
-<img src="images/landoceanuncertainty.png" width="700"/>
+<img src="images/land_ocean_temp.png" width="700"/>
 Key finding: Land areas have warmed almost twice as fast as oceans since 1850. The global average, calculated with area weighting, shows a steep acceleration in warming after the 1970s.<br>
 2. CO₂ vs Global Temperature
-<img src="images/globaltempCI.png" width="700"/>
+<img src="images/global_temp.png" width="700"/>
 Key finding: CO₂ explains ~92% of the variation in global temperatures since 1959. Regression shows a slope of ~0.0107 °C per ppm CO₂, indicating a ~1.07 °C rise for every 100 ppm increase.<br>
 3. Role of Solar Irradiance
-<img src="images/co2solar.png" width="700"/>
+<img src="images/co2_solar.png" width="700"/>
 Key finding: Solar irradiance varies cyclically with ~11-year sunspot cycles but shows no long-term upward trend, ruling it out as the main driver of sustained warming.<br>
 4. Role of Volcanic Activity
-<img src="images/co2vol.png" width="700"/>
+<img src="images/co2_volcano.png" width="700"/>
 Key finding: Major volcanic eruptions cause short-term cooling, but volcanic activity has no consistent trend and cannot explain long-term warming.<br>
 5. Model Accuracy — Observed vs Predicted
-<img src="images/obsVspredtemp.png" width="700"/>
+<img src="images/obs_vs_predicted1.png" width="700"/>
 Key finding: Multiple regression (CO₂, solar, volcanic) achieves R² ≈ 0.936. Predictions closely match observed values, confirming CO₂ as the dominant predictor.<br>
 6. Predicted vs Observed Scatter
-<img src="images/obsVspred2.png" width="500"/>
-Key finding: Data points cluster tightly around the 1:1 line, further validating the model’s accuracy.
+<img src="images/obs_vs_predicted2.png" width="500"/>
+Key finding: Data points cluster tightly around the 1:1 line, further validating the model’s accuracy. <br>
+7. Regression Analysis:
+<img src="images/regression_analysis.png" width="600"/>  
+Key finding: CO₂ is by far the strongest predictor of global temperature anomalies. Volcanic activity has a statistically significant cooling effect, while solar irradiance shows only a weak, borderline influence.<br>
+8. ANOVA Model Comparison: 
+<img src="images/Anova.png" width="500"/>  
+Key finding: Adding solar and volcanic variables produces only a marginal improvement (ΔR² ≈ 0.013), reinforcing that CO₂ is the dominant driver.
+
 ## Robustness & Diagnostics
 * Durbin–Watson ≈ 1.85 → little autocorrelation in residuals.
 
@@ -204,25 +223,27 @@ Key finding: Data points cluster tightly around the 1:1 line, further validating
 
 * We do not perform formal attribution with full climate models; this is a transparent statistical test, not a full detection-and-attribution study.
 ## Future Work
-* Add ENSO/PDO/AMO indices as additional covariates.
 
-* Try Bayesian fits and time-varying coefficients.
+- **Expand Drivers**: Add ENSO, PDO, and AMO indices to capture more of the natural variability.  
+- **Improve Statistical Methods**: Apply Bayesian fits and allow for time-varying coefficients.  
+- **Increase Physical Realism**: Use radiative forcings (W/m²) rather than raw indices and fit a simplified energy-balance model.  
+- **Update Data Sources**: Extend AOD records with the latest reconstructions and evaluate volcanic influences in the post-2012 period.
 
-* Use forcings (W/m²) instead of raw indices and fit a physical energy-balance model.
-
-* Extend AOD to the latest reconstructions and test the post-2012 period with volcanic forcing proxies.
 ## Contributing
-Contributions are welcome!
 
-* Fork the repository.
+Contributions are welcome! To contribute:
 
-* Create a new branch.
-
-* Commit your changes.
-
-* Submit a pull request.
+1. **Fork** the repository  
+2. **Create** a new feature branch (`git checkout -b feature-name`)  
+3. **Commit** your changes with clear messages  
+4. **Push** to your branch and **open a Pull Request**
 
 ## License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+## Contact
 
+For questions, suggestions, or feedback, please reach out:
+
+- **Name**: [Shubham Santosh Salvi]  [Aditi Hemant Pokale]
+- **Email**: [shubham.salvi@ucdconnect.ie]  [aditi.pokale@ucdconnect.ie]
