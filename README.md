@@ -68,19 +68,6 @@ Unlike many climate attribution studies relying on complex global climate models
 
 ---
 
-## Datasets
-
-| Dataset | Source | Period | Notes |
-|---------|--------|--------|-------|
-| CO₂ Annual Mean | Mauna Loa Observatory | 1959–2024 | ±0.12 ppm uncertainty |
-| Land Temp Anomalies | Berkeley Earth | 1750–2024 | Annual anomalies vs baseline |
-| Ocean Temp Anomalies | HadSST4 | 1850–2024 | Sea surface temperature anomalies |
-| Total Solar Irradiance | NOAA/PMOD | 1610–2024 | W/m², includes 11-year cycles |
-| Aerosol Optical Depth | NASA GISS | 1850–2012 | Volcanic aerosol loading |
-| Volcanic Eruption Index | Smithsonian GVP | -55,500–2025 | Severity of eruptions |
-
----
-
 ## Project Structure
 
 ```
@@ -99,40 +86,83 @@ climate_analysis/
 
 ## Installation
 
-### Prerequisites
-- Python 3.10+
-- pip
-- git
+Follow these steps to set up the project locally and reproduce the analysis.
 
-### Steps
+### Prerequisites
+Make sure you have the following installed:
+- [Python 3.10+](https://www.python.org/downloads/)  
+- [pip](https://pip.pypa.io/en/stable/installation/) (Python package installer)  
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  
+- (Optional but recommended) [virtualenv](https://docs.python.org/3/library/venv.html) or [conda](https://docs.conda.io/projects/conda/en/latest/index.html) for environment management  
+- Jupyter Notebook or JupyterLab for running `.ipynb` files  
+
+### Clone the repository
 ```bash
-# Clone repository
 git clone https://github.com/ACM40960/project-project-in-math-modelling-a-s.git
 cd project-project-in-math-modelling-a-s
-
-# Create virtual environment
+```
+### Set up a Virtual Environment
+It is recommended to use a virtual environment to avoid dependency conflicts.
+- For macOS/Linux
+```bash
 python -m venv venv
-source venv/bin/activate   # macOS/Linux
-venv\Scripts\activate      # Windows
-
-# Install dependencies
+source venv/bin/activate
+```
+- For Windows/PowerShell
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+### Install dependencies
+All required packages are listed in requirements.txt.
+```bash
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
+If you encounter time-axis warnings when using xarray, ensure cftime is installed:
+```bash
+pip install cftime
+```
+### Verify installation
+Run the following to check that the required packages are available:
+```bash
+python -c "import pandas, numpy, matplotlib, seaborn, scipy, statsmodels, xarray, cftime; print('✅ All dependencies installed successfully')"
+```
+### Run the notebook
+Once everything is installed, launch Jupyter and open the main analysis notebook:
+```bash
+jupyter notebook notebooks/final_project.ipynb
+```
+This will regenerate all figures present in the images/ folder and results into reports/.
+### Export the notebook as PDF (optional)
+If you want to produce a PDF version of the notebook with all outputs:
+```bash
+pip install "nbconvert[webpdf]" playwright
+playwright install chromium
+jupyter nbconvert --to webpdf notebooks/final_project2.ipynb
+```
+## Datasets
+
+| Dataset | Source | Period | Notes |
+|---------|--------|--------|-------|
+| CO₂ Annual Mean | Mauna Loa Observatory | 1959–2024 | ±0.12 ppm uncertainty |
+| Land Temp Anomalies | Berkeley Earth | 1750–2024 | Annual anomalies vs baseline |
+| Ocean Temp Anomalies | HadSST4 | 1850–2024 | Sea surface temperature anomalies |
+| Total Solar Irradiance | NOAA/PMOD | 1610–2024 | W/m², includes 11-year cycles |
+| Aerosol Optical Depth | NASA GISS | 1850–2012 | Volcanic aerosol loading |
+| Volcanic Eruption Index | Smithsonian GVP | -55,500–2025 | Severity of eruptions |
+
+---
 ## Methodology
-* Data Loading & Cleaning: Standardize formats, remove missing values, align year ranges.
+* Data Loading & Cleaning — All datasets (CO₂, temperature anomalies, solar irradiance, volcanic indices) were standardized to annual resolution, missing values handled, and year ranges aligned to create consistent time series.
 
-* Global Temperature Series: Merge land & ocean anomalies with area weighting, propagate uncertainties.
-
-* Driver Merging: Combine CO₂, TSI anomalies, volcanic activity metrics.
-
-* Correlation Analysis: Pearson correlations between temperature and each driver.
-
-* Regression Models:
-  * Simple: Temp ~ CO₂
-  * Multiple: Temp ~ CO₂ + TSI + VEI Use HAC-robust errors.
-
-* Model Comparison: ANOVA to test added explanatory power of natural forcings.
-
+* Global Temperature Series — Land (Berkeley Earth) and ocean (HadSST4) anomalies were merged using area-weighting (29% land, 71% ocean). Uncertainties were propagated to reflect confidence intervals in the global anomaly series.
+* Driver Integration — CO₂ concentrations, solar irradiance anomalies, and volcanic activity metrics (AOD, VEI) were merged into a single driver panel aligned with the global temperature series.
+* Exploratory Analysis — Pearson correlation coefficients quantified the strength and direction of relationships between temperature anomalies and each driver.
+* Regression Modeling —
+  * Simple model: Temperature anomalies regressed on CO₂ alone.
+  * Multiple model: Temperature anomalies regressed on CO₂, solar irradiance, and volcanic activity, using HAC-robust standard errors to account for autocorrelation and heteroskedasticity.
+* Model Comparison — ANOVA was used to formally test whether natural forcings (solar, volcanic) significantly improved explanatory power beyond CO₂ alone.
 * Diagnostics: Residual plots, QQ plots, Cook’s distance, VIF.
 ## Results:
 1. Global Warming Trend — Land, Ocean, and Global
